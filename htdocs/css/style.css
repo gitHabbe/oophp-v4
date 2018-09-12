@@ -29,9 +29,9 @@ body {
  * Header
  */
 .outer-wrap-header {
-    /* display: none; */
-    max-width: 100%;
     /* min-height: 2em; */
+
+    max-width: 100%;
     background-color: #000;
     color: #fff;
 }
@@ -119,13 +119,13 @@ h1 {
     color: #fff;
     padding: 1em 0;
 }
+
 .wrap-footer {
     display: flex;
     justify-content: space-between;
 }
 
 .wrap-footer a {
-    /* font-size: 140%; */
     color: rgb(103, 185, 15);
 }
 

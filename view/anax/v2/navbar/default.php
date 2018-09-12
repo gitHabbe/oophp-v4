@@ -15,7 +15,7 @@ namespace Anax\View;
 <navbar class="navbar">
 <?php foreach ($navbar ?? [] as $item) : ?>
     <a href="<?= url($item["url"]) ?>" title="<?= $item["title"] ?>"><?= $item["text"] ?></a>
-    <?php if ($item != end($navbar)): ?>
+    <?php if ($item != end($navbar)) : ?>
      | 
     <?php endif; ?>
 <?php endforeach; ?>
