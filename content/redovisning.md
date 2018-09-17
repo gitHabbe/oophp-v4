@@ -23,7 +23,14 @@ Det känns bra att ha starkare grunder för Github inför kursmomentet, jag ska 
 Kmom02
 -------------------------
 
-Här är redovisningstexten
+Det var rätt roligt att jobba i ramverket denna vecka. Instruktionerna som kom med uppgiften gick igenom grunderna bra så att portera spelet från ens egna filer var relativt smärtfritt. På många vis så liknar det Flask genom att dela upp varje uppgift till en egen sektion. Klassen tar han dom strukturen för vad information man ska ha tillgång till, routen hämtar relevant och nödvändig data och vyn tar emot datan och försöker skapa en fin representation för användaren att jobba med. Detta är nog en populär teknik för ramverk att använda då alla arbetsuppgifter är bra indelade och minimerar misstag. Jag skulle inte vilja gå tillbaka till vanlig ren PHP för att bygga en hemsida. Det känns så klumpigt att blanda HTML och PHP med en drös if-satser för att kolla upp om applikationen fungerar som den ska.
+
+Det är lite för tidigt för mig att ha en åsikt kring hur hjälpfullt genererad dokumentation är för att förstår hur en applikation fungerar. Det är rätt smidigt att få en snabb överblick till var metoder åstadkommer men hittills så kan jag inte utnyttja den informationen på ett bra sätt. Jag hade uppskattat om den är kunde generera en mindre UML version som tydligare visar hur klasser är kopplade till varandra. Kanske är det för mycket att fråga efter då jag inte vet hur stort allting sträcker sig.
+
+Av någon anledning så krånglade min genererade dokumentation. Under förklaringen för metoderna kom ett error på flera hundra rader. Jag är inte helt säker på vad som orsakade problemet men det är möjligt att det var för att jag hade flera parametrar än efterfrågat på ett av mina objekt. I förra kursmomentet ville jag att man skulle få ett resultat som visade hur många försök man tog på sig men lyckades inte hantera informationen (förutom med sessioner) så jag strök det. PHP bryr sig inte om jag instansierar med för många parametrar så jag brydde mig inte mer om det. Hursomhelst så försvann meddelandet om jag reducerade till det korrekta antalet och genererade om dokumentationen. 
+
+Jag lärde mig denna vecka att Anax tar han om sessionen för användaren. Jag försökte manipulera den genom att ge mitt egen namn men det gick inte. Tydligen så tar en av modulerna han om den och jag blev tipsad att kika vidare på hur den fungerar eftersom vi kommer jobba med den i senare kursmoment. 
+
 
 
 
