@@ -2,11 +2,13 @@
 
 class DiceHand
 {
+    private $player;
     private $dices;
     private $totalValue;
 
-    public function __construct()
+    public function __construct($name)
     {
+        $this->player = $name;
         $this->dices = [];
         $this->totalValue = 0;
     }
@@ -25,5 +27,10 @@ class DiceHand
     public function handValue()
     {
         return $this->totalValue;
+    }
+
+    public function getPlayer()
+    {
+        return $this->player;
     }
 }
