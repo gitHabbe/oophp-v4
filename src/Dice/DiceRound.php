@@ -1,5 +1,7 @@
 <?php
 
+namespace Hab\Dice;
+
 class DiceRound
 {
     private $diceHands;

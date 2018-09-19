@@ -1,5 +1,7 @@
 <?php
 
+namespace Hab\Dice;
+
 class Dice
 {
     private $roll;
@@ -11,7 +13,7 @@ class Dice
 
     public function roll()
     {
-        $this->roll = rand(1, 6);
+        $this->roll = rand(1, $this->sides);
     }
 
     public function getRoll()

@@ -6,12 +6,12 @@
 
 
 /**
- * Showing GET version of guessing game.
+ * Setup game using GET route.
  */
 $app->router->get("tarning/setup", function () use ($app) {
 
     $data = [
-        "title" => "Tärningsspel 100"
+        "title" => "Tärningsspel 100 setup"
     ];
 
     $app->view->add("anax/v2/dice/diceSetup", $data);
@@ -19,19 +19,19 @@ $app->router->get("tarning/setup", function () use ($app) {
     return $app->page->render($data);
 });
 
-// /**
-//  * Showing GET version of guessing game.
-//  */
-// $app->router->post("tarning/game", function () use ($app) {
+/**
+ * Start game using POST route.
+ */
+$app->router->post("tarning/game", function () use ($app) {
 
-//     $players = $_POST["playerCount"];
 
-//     $data = [
-//         "title" => "Tärningsspel 100 POST",
-//         "players" => $players
-//     ];
+    $data = [
+        "title" => "Tärningsspel 100",
+        "playerCount" => $_POST["playerCount"],
+        "diceCount" => $_POST["diceCount"]
+    ];
 
-//     $app->view->add("anax/v2/dice/dicegame", $data);
+    $app->view->add("anax/v2/dice/diceGame", $data);
 
-//     return $app->page->render($data);
-// });
+    return $app->page->render($data);
+});

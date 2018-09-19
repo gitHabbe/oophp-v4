@@ -1,12 +1,14 @@
 <?php
 
+namespace Hab\Dice;
+
 class DiceHand
 {
     private $player;
     private $dices;
     private $totalValue;
 
-    public function __construct($name)
+    public function __construct(string $name = "unnamed")
     {
         $this->player = $name;
         $this->dices = [];
