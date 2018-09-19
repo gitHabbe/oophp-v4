@@ -1,6 +1,6 @@
 ---
 ---
-Gissa
+Tärning
 =========================
 
 Tärningsspel
