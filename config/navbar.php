@@ -29,6 +29,11 @@ return [
         "title" => "Spela gissa numret.",
     ],
     [
+        "text" => "Tärning",
+        "url" => "tarning",
+        "title" => "Tärningsspel 100.",
+    ],
+    [
         "text" => "Development",
         "url" => "dev",
         "title" => "Anax development and debugging utilities.",
