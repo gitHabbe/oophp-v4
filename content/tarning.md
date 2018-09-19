@@ -4,4 +4,4 @@ Gissa
 =========================
 
 Tärningsspel
-[Länk](tarning/game)
+[Länk](tarning/setup)

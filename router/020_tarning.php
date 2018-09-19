@@ -8,30 +8,30 @@
 /**
  * Showing GET version of guessing game.
  */
-$app->router->get("tarning/game", function () use ($app) {
-
-    // $game = new DiceGame();
+$app->router->get("tarning/setup", function () use ($app) {
 
     $data = [
         "title" => "Tärningsspel 100"
     ];
 
-    $app->view->add("anax/v2/dice/dicegame", $data);
+    $app->view->add("anax/v2/dice/diceSetup", $data);
 
     return $app->page->render($data);
 });
-/**
- * Showing GET version of guessing game.
- */
-$app->router->post("tarning/game", function () use ($app) {
 
-    // $game = new DiceGame();
+// /**
+//  * Showing GET version of guessing game.
+//  */
+// $app->router->post("tarning/game", function () use ($app) {
 
-    $data = [
-        "title" => "Tärningsspel 100 POST"
-    ];
+//     $players = $_POST["playerCount"];
 
-    $app->view->add("anax/v2/dice/dicegame", $data);
+//     $data = [
+//         "title" => "Tärningsspel 100 POST",
+//         "players" => $players
+//     ];
 
-    return $app->page->render($data);
-});
+//     $app->view->add("anax/v2/dice/dicegame", $data);
+
+//     return $app->page->render($data);
+// });
