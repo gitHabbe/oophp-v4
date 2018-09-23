@@ -4,20 +4,25 @@ namespace Hab\Dice;
 
 class DiceRound
 {
-    private $diceHands;
+    private $players;
+    // private $playerCount;
+    private $currentPlayer;
 
     public function __construct()
     {
-        $this->diceHands = [];
+        // for ($i=0; $i < $playerCount; $i++) {
+        //     $this->players[$i] = new DiceHand(strval($i));
+        //     array_push($this->hands, $this->players[$i]);
+        // }
     }
 
     public function appendRound($diceHand)
     {
-        array_push($this->diceHands, $diceHand);
+        array_push($this->hands, $diceHand);
     }
 
-    public function getHands()
+    public function currentPlayer()
     {
-        return $this->diceHands;
+        return $this->hands;
     }
 }

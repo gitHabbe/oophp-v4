@@ -4,20 +4,29 @@ namespace Hab\Dice;
 
 class Dice
 {
-    private $roll;
+    private $sides;
+    private $value;
 
     public function __construct(int $sides = 6)
     {
-        $this->roll = rand(1, $sides);
+        $this->sides = $sides;
+        $this->value = $this->roll();
+        echo '$this->value' . ': ';
+        var_dump($this->value);
+    }
+
+    public function reroll()
+    {
+        $this->value = $this->roll();
     }
 
     public function roll()
     {
-        $this->roll = rand(1, $this->sides);
+        return rand(1, $this->sides);
     }
 
-    public function getRoll()
+    public function value()
     {
-        return $this->roll;
+        return $this->value;
     }
 }
