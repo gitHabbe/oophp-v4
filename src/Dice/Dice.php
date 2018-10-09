@@ -10,23 +10,15 @@ class Dice
     public function __construct(int $sides = 6)
     {
         $this->sides = $sides;
-        $this->value = $this->roll();
-        echo '$this->value' . ': ';
-        var_dump($this->value);
-    }
-
-    public function reroll()
-    {
-        $this->value = $this->roll();
-    }
-
-    public function roll()
-    {
-        return rand(1, $this->sides);
+        $this->value = rand(1, $this->sides);
     }
 
     public function value()
     {
         return $this->value;
+    }
+    public function sides()
+    {
+        return $this->sides;
     }
 }

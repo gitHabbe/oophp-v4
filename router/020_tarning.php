@@ -1,41 +1,22 @@
 <?php
-/**
- * Create routes using $app programming style.
- */
-//var_dump(array_keys(get_defined_vars()));
 
-
-/**
- * Setup game using GET route.
- */
 $app->router->get("tarning/setup", function () use ($app) {
+    $app->session->delete("DiceGame");
+    $app->session->destroy();
     
     $data = [
         "title" => "Tärningsspel 100 setup"
     ];
     
-    $app->view->add("anax/v2/dice/diceSetup", $data);
+    $app->view->add("anax/v2/dice/setup-dice", $data);
     
     return $app->page->render($data);
 });
 
-/**
- * Start game using POST route.
- */
-$app->router->post("tarning/start", function () use ($app) {
-    $app->session->delete("DiceGame");
-    $app->session->destroy();
-    // $playerCount    = 3;
-    // $diceCount      = 3;
-    $playerCount    = $_POST["playerCount"];
-    $diceCount      = $_POST["diceCount"];
+$app->router->get("tarning/start", function () use ($app) {
     $game = $app->session->get("DiceGame");
     if (!$game) {
-        $game = new \Hab\Dice\DiceGame(intval($playerCount), intval($diceCount));
-        $game->init();
-        // $game = new \Hab\Dice\DiceGame();
-        // echo '$game' . ': ';
-        // var_dump($game);
+        $game = new \Hab\Dice\DiceGame();
         $app->session->set("DiceGame", $game);
     }
 
@@ -44,19 +25,28 @@ $app->router->post("tarning/start", function () use ($app) {
         "game" => $game
     ];
 
-    $app->view->add("anax/v2/dice/diceStart", $data);
+    $app->view->add("anax/v2/dice/start-dice", $data);
     
     return $app->page->render($data);
 });
 
-$app->router->post("tarning/round", function () use ($app) {
+$app->router->get("tarning/roll", function () use ($app) {
     $game = $app->session->get("DiceGame");
-    echo "<pre>" , var_dump($game) , "</pre>";
-    var_dump($game->players());
-    $data = [
-        "title" => "processing",
-        "game" => $game
-    ];
+    $game->playPlayer();
 
-    $app->response->redirect("tarning/game");
+    $app->response->redirect("tarning/start");
+});
+
+// $app->router->get("tarning/computer-roll", function () use ($app) {
+//     $game = $app->session->get("DiceGame");
+//     $game->play();
+
+//     $app->response->redirect("tarning/start");
+// });
+
+$app->router->get("tarning/stay", function () use ($app) {
+    $game = $app->session->get("DiceGame");
+    $game->stay();
+
+    $app->response->redirect("tarning/start");
 });

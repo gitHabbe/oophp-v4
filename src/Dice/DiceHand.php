@@ -4,43 +4,47 @@ namespace Hab\Dice;
 
 class DiceHand
 {
-    private $player;
     private $diceCount;
     private $dices;
     private $totalValue;
 
-    public function __construct(int $diceCount = 3, string $player = "computer")
+    public function __construct(int $diceCount = 3)
     {
-        $this->player = $player;
         $this->diceCount = $diceCount;
         $this->dices = [];
         $this->totalValue = 0;
-
-        // $this->rollDices();
+        $this->rollDices();
     }
 
     public function rollDices()
     {
+        $playable = true;
         $diceArray = [];
-        $isAppendable = true;
         for ($i = 0; $i < $this->diceCount; $i++) {
             $dice = new Dice();
             if ($dice->value() === 1) {
-                $isAppendable = false;
+                $playable = false;
                 $this->resetHand();
             }
+            // var_dump($diceArray);
             array_push($diceArray, $dice);
         }
-        if ($isAppendable) {
-            foreach ($diceArray as $diceObj) {
-                array_push($this->dices, $diceObj);
-                $this->totalValue += $diceObj->getRoll();
+        if ($playable) {
+            foreach ($diceArray as $dice) {
+                array_push($this->dices, $dice);
+                $this->totalValue += $dice->value();
             }
-        } else {
-            throw Exception("One dice is 1");
         }
     }
-
+    public function getTotal()
+    {
+        $total = 0;
+        for ($i=0; $i < 3; $i++) {
+            $dice = new Dice();
+            $total += $dice->value();
+        }
+        return $total;
+    }
     private function resetHand()
     {
         $this->dices = [];
@@ -55,10 +59,5 @@ class DiceHand
     public function handValue()
     {
         return $this->totalValue;
-    }
-
-    public function player()
-    {
-        return $this->player;
     }
 }
