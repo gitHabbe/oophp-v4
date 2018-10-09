@@ -2,6 +2,11 @@
 
 namespace Hab\Dice;
 
+/** 
+ * I could refactor the setters and getters to not exist
+ * but I think thats looks worse.
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ */
 class DiceGame
 {
     
@@ -65,7 +70,7 @@ class DiceGame
             $this->appendGameInfo("Round " . $currentRound->roundNr() . " complete.<br>");
             $this->appendRounds($currentRound);
         }
-        if ($this->computerTotal >= 30) {
+        if ($this->computerTotal >= 100) {
             $this->resetGameInfo();
             $this->appendGameInfo("Computer win!");
         }
@@ -104,7 +109,7 @@ class DiceGame
             $this->appendRounds($currentRound);
         }
         $this->playComputer();
-        if ($this->playerTotal >= 30) {
+        if ($this->playerTotal >= 100) {
             $this->resetGameInfo();
             $this->appendGameInfo("Player win!");
         }
