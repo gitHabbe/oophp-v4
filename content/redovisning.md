@@ -37,7 +37,11 @@ Jag lärde mig denna vecka att Anax tar han om sessionen för användaren. Jag f
 Kmom03
 -------------------------
 
-Här är redovisningstexten
+Detta var en intressant vecka tycker jag. Jag hade väldigt stora problem med tärningsspelet 100 och det tog på tok för mycket tid att lösa uppgiften och jag tappade en del motivation. Som tur var fick jag i alla fall en bättre överblick på vad enhetstester faktiskt åstadkommer. Tidigare har jag alltid tyckt att dom är meningslösa och inte tillför något men nu har jag lite mer respekt för dom. Något som är lite tråkigt med kodteckning är ju hur lite det faktiskt ibland kan betyda. 100% kodteckning kan jag tycka är näst in till irrelevant då den kan testa för så lite fall. Det gäller att man bygger många testfall om man ska våga lita på att den redigerat metod faktiskt beter sig som förväntat. 
+ 
+Jag har tidigare gjort enhetstester i Python vilket gav en idé för hur strukturen skulle se ut. Nytt för PHP var dock hur PHPUnit kan skriva ut statistik för hur mycket av klasserna som är testat. Det finns säkert liknande verktyg för Python vilket jag förmodligen kommer kolla upp någon dag. Mycket av den kod som jag skrev för spelet blev rätt kluddig. Den är relativt läsbar men jag lyckades inte komma på simpla metoder för att lösa problem eller läsa vart spelet befinner sig. Jag hade hellre kortat ner längden på metoderna och gjort fler av dom men efter att ha börjat om 2 gånger redan så kunde jag inte komma på ett effektivare sätt. 
+
+Mitt TIL för denna veckan är hur mycket logik det gick att klämma in i klasserna. När jag lästa om uppgiften så fick jag direkt känslan av att hela spelet nästan skulle utspelas i routen och att klasserna mest bara skulle dela ut poäng och returerna resultat till vyn. Det blev mest bara att instansiera i routen och sedan passa vidare spelets objekt i sessionen. Jag valde att använda 2 extra routes när det kom till att hantera anrop för att rulla tärningarna igen eller stanna på den poäng som man lyckats skrapa ihop. Jag valde även att göra några extra tester för att få lite mer grönt på resultatet av PHPUnit. Med många setters och getters så krävdes det några extra för att få bort det röda och gula från den genererade sidan. Det känns bra att ha koll på all kod som ska testas i alla fall. Jag vet inte ens hur jag skulle testa kod som jag inte har tillgång till. Det är väldigt viktigt att den som skrev dom metoderna använder bra namn för att testaren ska kunna göra bra tester. 
 
 
 
