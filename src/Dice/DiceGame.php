@@ -7,8 +7,10 @@ namespace Hab\Dice;
  * but I think thats looks worse.
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
-class DiceGame
+class DiceGame implements HistogramInterface
 {
+
+    use DiceGameTrait;
     
     private $rounds;
     private $computerTotal;
@@ -16,7 +18,7 @@ class DiceGame
     private $playerTotal;
     private $playerCurrent;
     private $gameInfo;
-
+    // private $test;
     public function __construct()
     {
         $this->rounds = [];
@@ -25,6 +27,7 @@ class DiceGame
         $this->playerTotal = 0;
         $this->playerCurrent = 0;
         $this->gameInfo = "";
+        // $this->test = [];
         $this->init();
     }
 
@@ -32,8 +35,8 @@ class DiceGame
     {
         $round = new DiceRound(0);
         $round->whoGoesFirst();
-        $this->appendGameInfo("Game has started. <br>");
         $winner = $round->turnOwner();
+        $this->appendGameInfo("Game has started. <br>");
         $this->appendGameInfo($winner . " starts the game.<br>");
         $round->completeRound();
         $this->appendRounds($round);
@@ -59,8 +62,9 @@ class DiceGame
             $this->appendGameInfo("Computer scored " . $computerHand->handValue() . " points.<br>");
         } else {
             $this->appendGameInfo("Computer busted and got 0 points.<br>");
+            $this->computerCurrent = "Busted!";
         }
-        $this->computerCurrent = $computerHand->handValue();
+        // $this->computerCurrent = $computerHand->handValue();
         $this->computerTotal += $computerHand->handValue();
         $currentRound->setComputerDone();
         $currentRound->setTurnOwner("player");
@@ -78,8 +82,6 @@ class DiceGame
     
     public function playPlayer()
     {
-        $this->computerCurrent = 0;
-
         $currentRound = $this->checkForNewRound();
         $playerHand = $currentRound->playerHands();
         $this->playerCurrent = $playerHand->handValue();
@@ -91,6 +93,7 @@ class DiceGame
                 $currentRound->completeRound();
                 $this->appendRounds($currentRound);
                 $this->playComputer();
+                $this->playerCurrent = "Busted!";
             } else {
                 $this->playComputer();
             }
@@ -119,8 +122,17 @@ class DiceGame
     {
         $currentRound = $this->rounds[count($this->rounds) - 1];
         if ($currentRound->isRoundComplete()) {
+            $currentRound->appendHands();
+            $test = $currentRound->getSerie();
+            $this->appendTest($test);
+            // var_dump($this->test);
+
             $round = new DiceRound($currentRound->roundNr() + 1);
             $this->appendRounds($round);
+            $this->resetGameInfo();
+            $this->appendGameInfo("Round " . $currentRound->roundNr()
+                . " has ended.<br>Round "
+                . $round->roundNr() . " has started!<br>");
             return $round;
         }
         return $currentRound;

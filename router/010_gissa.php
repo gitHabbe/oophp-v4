@@ -45,9 +45,13 @@ $app->router->get("gissa/get", function () use ($app) {
 $app->router->any(["GET", "POST"], "gissa/post", function () use ($app) {
 
     $res = null;
-    $number = $_POST["number"] ?? -1;
+    // $number = $_POST["number"] ?? -1;
+    $number = $app->request->getPost("number", -1);
+    var_dump($number);
     $tries  = $_POST["tries"] ?? 6;
+    $tries  = $app->request->getPost("tries", 6);
     $guess  = $_POST["guess"] ?? null;
+    $guess  = $app->request->getPost("guess", null);
 
     // $game = new \Hab\Guess\Guess(intval($number), intval($tries), intval($tries));
     $game = new \Hab\Guess\Guess(intval($number), intval($tries));

@@ -1,6 +1,11 @@
 <?php
-
-echo "ComputerCurrent: ";
+echo "Histogram<br>";
+echo $game->getHistogram() . "<br>";
+// $test = $game->showTest();
+// echo "<pre>";
+// var_dump($test);
+// echo "</pre>";
+echo "<br>ComputerCurrent: ";
 echo $game->computerCurrent();
 echo "<br>";
 echo "ComputerTotal: ";

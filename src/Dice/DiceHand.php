@@ -4,6 +4,8 @@ namespace Hab\Dice;
 
 class DiceHand
 {
+    use DiceHandTrait;
+
     private $diceCount;
     private $dices;
     private $totalValue;
@@ -22,6 +24,7 @@ class DiceHand
         $diceArray = [];
         for ($i = 0; $i < $this->diceCount; $i++) {
             $dice = new Dice();
+            $this->appendSerie($dice); // trait
             if ($dice->value() === 1) {
                 $playable = false;
                 $this->resetHand();

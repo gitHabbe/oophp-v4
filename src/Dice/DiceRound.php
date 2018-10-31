@@ -4,6 +4,8 @@ namespace Hab\Dice;
 
 class DiceRound
 {
+    use DiceRoundTrait;
+
     private $turnOwner;
     private $completed;
     private $playerDone;
