@@ -34,6 +34,11 @@ return [
         "title" => "Tärningsspel 100.",
     ],
     [
+        "text" => "Movies",
+        "url" => "movies",
+        "title" => "Movies.",
+    ],
+    [
         "text" => "Development",
         "url" => "dev",
         "title" => "Anax development and debugging utilities.",

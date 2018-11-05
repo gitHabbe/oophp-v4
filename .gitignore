@@ -1,5 +1,6 @@
 /.bin
 /build
 /vendor
+private.json
 memory::
 composer.lock
