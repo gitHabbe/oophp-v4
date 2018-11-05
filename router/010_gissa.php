@@ -11,17 +11,18 @@
 $app->router->get("gissa/get", function () use ($app) {
 
     $res = null;
-    $number = $_GET["number"] ?? -1;
-    $tries  = $_GET["tries"] ?? 6;
-    $guess  = $_GET["guess"] ?? null;
+    $number = $app->request->getGet("number", -1);
+    $tries  = $app->request->getGet("tries", 6);
+    $guess  = $app->request->getGet("guess", null);
 
-    // $game = new \Hab\Guess\Guess(intval($number), intval($tries), intval($tries));
     $game = new \Hab\Guess\Guess(intval($number), intval($tries));
 
+    // if ($app->request->getGet("takeGuess", null)) {
     if (isset($_GET["takeGuess"])) {
         $res = $game->makeGuess(intval($guess));
     }
     
+    // if ($app->request->getGet("reset", null)) {
     if (isset($_GET["reset"])) {
         $game->random();
     }
@@ -45,21 +46,18 @@ $app->router->get("gissa/get", function () use ($app) {
 $app->router->any(["GET", "POST"], "gissa/post", function () use ($app) {
 
     $res = null;
-    // $number = $_POST["number"] ?? -1;
     $number = $app->request->getPost("number", -1);
-    var_dump($number);
-    $tries  = $_POST["tries"] ?? 6;
     $tries  = $app->request->getPost("tries", 6);
-    $guess  = $_POST["guess"] ?? null;
     $guess  = $app->request->getPost("guess", null);
 
-    // $game = new \Hab\Guess\Guess(intval($number), intval($tries), intval($tries));
     $game = new \Hab\Guess\Guess(intval($number), intval($tries));
 
+    // if ($app->request->getPost("takeGuess")) {
     if (isset($_POST["takeGuess"])) {
         $res = $game->makeGuess(intval($guess));
     }
     
+    // if ($app->request->getPost("reset", null)) {
     if (isset($_POST["reset"])) {
         $game->random();
     }
@@ -81,28 +79,27 @@ $app->router->any(["GET", "POST"], "gissa/post", function () use ($app) {
  * Showing SESSION version of guessing game.
  */
 $app->router->any(["GET", "POST"], "gissa/session", function () use ($app) {
-    // echo session_name() . "<br>";
-    $number = $_SESSION["number"] ?? -1;
-    $tries  = $_SESSION["tries"] ?? 6;
-    $guess  = $_POST["guess"] ?? null;
-
-    // $game = new \Hab\Guess\Guess(intval($number), intval($tries), intval($tries));
-    $game = new \Hab\Guess\Guess(intval($number), intval($tries));
     
-    $_SESSION["number"] = $game->number();
-    $_SESSION["tries"] = $game->tries();
+    $number = $app->session->get("number");
+    $tries  = $app->session->get("tries");
+    $guess  = $app->session->get("guess");
+
+    $game = new \Hab\Guess\Guess(intval($number), intval($tries));
+    // $app->session->set("DiceGame", $game);
+    $app->session->set("number", $game->number());
+    $app->session->set("tries", $game)->tries();
     
     $res = null;
 
-    // print_r($app->session);
-    
-    if (isset($_POST["takeGuess"])) {
-        $guess = $_POST["guess"];
+    if ($app->request->getPost("takeGuess", null)) {
+        // $guess = $_POST["guess"];
+        $guess = $app->request->getPost("guess");
         $res = $game->makeGuess(intval($guess));
-        $_SESSION["tries"] = $game->tries();
+        // $_SESSION["tries"] = $game->tries();
+        $app->session->set("tries", $game->tries());
     }
     
-    if (isset($_POST["reset"])) {
+    if ($app->request->getPost("reset", null)) {
         $_SESSION = [];
         if (ini_get("session.use_cookies")) {
             $params = session_get_cookie_params();
@@ -118,10 +115,8 @@ $app->router->any(["GET", "POST"], "gissa/session", function () use ($app) {
         }
         session_destroy();
         $tries = 6;
-        // $game = new \Hab\Guess\Guess(intval($number), intval($tries), intval($tries));
         $game = new \Hab\Guess\Guess(intval($number), intval($tries));
-        $_SESSION["tries"] = 6;
-        // echo "session destroyed";
+        $app->session->set("tries", 6);
     }
 
     $data = [

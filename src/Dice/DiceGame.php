@@ -2,12 +2,12 @@
 
 namespace Hab\Dice;
 
-/** 
+/**
  * I could refactor the setters and getters to not exist
- * but I think thats looks worse.
+ * but I think that looks worse.
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
-class DiceGame implements HistogramInterface
+class DiceGame implements DiceGameInterface
 {
 
     use DiceGameTrait;
