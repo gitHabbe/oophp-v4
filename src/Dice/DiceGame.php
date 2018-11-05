@@ -53,9 +53,15 @@ class DiceGame implements DiceGameInterface
         $currentRound = $this->checkForNewRound();
         $computerHand = $currentRound->computerHands();
         $playerHand = $currentRound->playerHands();
+        $diff = $this->playerTotal - $this->computerTotal;
         $this->playerCurrent = 0;
         $this->computerCurrent = $computerHand->handValue();
         if ($computerHand->handValue() < 6 && $computerHand->handValue() != 0) {
+            $computerHand->rollDices();
+        }
+        if ($diff > 25) {
+            $computerHand->rollDices();
+        } else if ($this->computerTotal >= 89) {
             $computerHand->rollDices();
         }
         if ($computerHand->handValue() > 0) {
