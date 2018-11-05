@@ -48,7 +48,13 @@ Mitt TIL för denna veckan är hur mycket logik det gick att klämma in i klasse
 Kmom04
 -------------------------
 
-Här är redovisningstexten
+Intelligensen för min hemsida var relativt simpel. Sedan tidigare kursmoment hade jag redan kodat in lite IQ så jag valde att bygga lite mer på det. Mestadels var det tankegångar som en vanlig människa skulle ha om man spelade liknande spel. Om det är för stort mellanrum mellan sina egna poäng och motståndarens så är det dags att börja riskera lite för att komma ikapp eller om man är nära mållinjen så slår man en gång till. Kanske hade varit lite roligare om man skrev ut en lite mer “verbose” händelsehistorik i spelet, men det är något att tänka på till nästa gång.  
+
+Jag visste inte att traits existerade i något programmeringsspråk. Det var väldigt intressant att jobba med. Det kändes väldigt farligt i början då en referens görs via nyckelordet “this”. Det kan skapa eventuella falluckor i koden tycker jag eftersom det ser ut som om klassen själv har den koden. Annars är det väldigt händigt att kunna utöka klasserna på detta vis utan att behöva stöka ner en mall som redan kort och gott gör sitt jobb. Mitt TIL för denna vecka är nog bara att denna teknologi finns i PHP och kanske till och med i andra språk. Känns väldigt bra då vissa klasser ibland delar användningsområden och man behöver inte ärva från en annan fil.  
+
+Interfaces har jag lite skilda åsikter om. Dom känns lite som enhetstester som ser till att en utlovad metod verkligen finns i klassen. Just nu kan jag inte riktigt se hur mycket det kommer komma till hands när man gör ett projekt men det skadar väl inte att dom finns redo att användas. I början var det lite förvirrande eftersom ett interface kan lova att en metod som är implementerad i en klass även om den kommer från en trait. 
+
+För varje vecka som går så tycker jag allt mer och mer om ramverket måste jag säga. Det ser ju lite snyggare ut att hämta variabler via en metod istället för från dom globala verktyg som kommer med PHP. Jag är inte helt säker på vad Anax gör innan den returnerar det från metoden. Kanske den filtrerar möjliga injektioner, eller så hämtar den bara informationen helt enkelt. Jag gjorde mer eller mindre alla mina testfall i förra veckans kursmoment så jag behövde inte göra så mycket inom ramverket för detta område.
 
 
 
