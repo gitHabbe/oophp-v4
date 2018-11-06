@@ -35,7 +35,7 @@ return [
     ],
     [
         "text" => "Movies",
-        "url" => "movies",
+        "url" => "movie/movies",
         "title" => "Movies.",
     ],
     [

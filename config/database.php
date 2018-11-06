@@ -17,7 +17,7 @@ if ($_SERVER["SERVER_NAME"] === "www.student.bth.se") {
     $json = file_get_contents("../private.json");
     $data = json_decode($json);
     return [
-        "dsn"             => "mysql:host=blu-ray.student.bth.se;dbname=oophp;",
+        "dsn"             => "mysql:host=blu-ray.student.bth.se;dbname=nihf16;",
         "username"        => "nihf16",
         "password"        => $data->pw,
         "driver_options"  => [
