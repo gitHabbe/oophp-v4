@@ -2,7 +2,7 @@
     <a href="?route=select">SELECT *</a> |
     <a href="?route=get-title">Search title</a> |
     <a href="?route=get-year">Search year</a> |
-    <a href="?route=select-movie">Select</a> |
+    <a href="?route=select-movie">Select</a>
     <!-- <a href="?route=movie-edit">Edit</a> | -->
     <!-- <a href="?">Show all movies</a> | -->
     <!-- <a href="?route=reset">Reset database</a> | -->
@@ -17,7 +17,8 @@
         <th>Titel</th>
         <th>År</th>
     </tr>
-    <?php $id = -1; foreach ($movies as $row) : $id++; ?>
+    <?php $id = -1; foreach ($movies as $row) :
+        $id++; ?>
     <tr>
         <td><?= $id ?></td>
         <td><?= $row->id ?></td>
@@ -25,5 +26,6 @@
         <td><?= $row->title ?></td>
         <td><?= $row->year ?></td>
     </tr>
-    <?php endforeach; ?>
+    <?php endforeach;
+    ?>
 </table>

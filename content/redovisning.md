@@ -61,8 +61,13 @@ För varje vecka som går så tycker jag allt mer och mer om ramverket måste ja
 Kmom05
 -------------------------
 
-Här är redovisningstexten
+Det är möjligt att jag missuppfattat denna veckas uppgift kring ramverket. Det gick rätt bra att jobba igenom övningen för kursmomentet, tillsammans med den kunskap från databas och htmlphp så var det inga större frågetecken på vad som sker när jag följer dom kodexemplen som vi blev försedd med. Om jag hade fått valt själv så hade jag delat in uppgiften i flera routes och vyer. Några av dom skulle kunna lyssna på ett “wildcard” för att hämta rätt information från databasen. Istället följde jag övningen närmare vilket gjorde att strukturen inte blev riktigt lika snygg tycker jag, men den fungerar i alla fall. 
 
+Det var intressant att se hur man på riktigt sätter upp en miljö för utveckling och en förproduktion till en applikation som kan publiceras för allmänheten att använda. Jag har inte riktigt tänkt på att det kan vara så simpelt som att kika på vad servervariabeln har för information att dela av sig med och sedan returnera relevant konfiguration.  
+
+Vid några tillfällen så hade jag problem att lägga till formulär till hemsidan för att hämta data om filmerna. Jag beslöt mig för att använda mig av små vyer och fästa dom via ramverket på den route som tar hand om filmhanteringen. När informationen är hämtad och en query kan skapas till mysql så valde jag att skicka vidare informationen via anax egna “redirect” modul vilket fungerade väldigt bra. Jag hade faktiskt ingen aning om att man kunde spara både post och get data samtidigt i en vy. Det är verkligen min TIL för denna veckas arbete. 
+
+Med tanke på att jag ligger efter i arbete så valde jag inte att utöka funktionaliteten för hemsidan något mer än dom krav dom behövdes. Jag skummade igenom extra uppgifterna och gjorde en mental överblick för hur jag skulle strukturera den koden. Under inspektionen så lärde jag mig även att det går att skriva terminalkommandon rakt in i PHP med hjälp av inbyggda funktioner. Mycket bra att veta inför framtiden när jag jobbar med detta språk. Detta bygger ut min TIL ännu mer skulle jag vilja säga eftersom det är ett rätt viktigt verktyg att veta om och kunna använda på ett effektivt sätt.
 
 
 Kmom06

@@ -93,6 +93,7 @@ $app->router->any(["GET", "POST"], "movie/movies", function () use ($app) {
                 $app->db->execute($sql, [$newMovieTitle, $newMovieYear, $newMovieImage]);
             }
             $sql = "SELECT * FROM movie;";
+            break;
 
         default:
             $data["title"] = "Default movie database | oophp";
