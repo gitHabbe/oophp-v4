@@ -39,6 +39,11 @@ return [
         "title" => "Movies.",
     ],
     [
+        "text" => "Textfilter",
+        "url" => "filter/text",
+        "title" => "Textfilter.",
+    ],
+    [
         "text" => "Development",
         "url" => "dev",
         "title" => "Anax development and debugging utilities.",
