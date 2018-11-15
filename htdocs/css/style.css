@@ -93,7 +93,10 @@ body {
     margin: 0 5px;
 }
 
-
+.small-form {
+    display: flex;
+    justify-content: center;
+}
 
 /**
  * Main

@@ -1,5 +1,6 @@
 <?php
 use Michelf\MarkdownExtra;
+
 // Include essentials
 require __DIR__ . "/../test/config.php";
 require __DIR__ . "/../vendor/autoload.php";

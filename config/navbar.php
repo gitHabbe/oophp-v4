@@ -39,6 +39,11 @@ return [
         "title" => "Movies.",
     ],
     [
+        "text" => "Blog",
+        "url" => "blog/all",
+        "title" => "Blog title navbar.",
+    ],
+    [
         "text" => "Textfilter",
         "url" => "filter/text",
         "title" => "Textfilter.",

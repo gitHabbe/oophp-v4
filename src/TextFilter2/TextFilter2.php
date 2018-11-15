@@ -1,7 +1,9 @@
 <?php
 
 namespace Hab\TextFilter2;
+
 use Michelf\MarkdownExtra;
+
 /**
  * Filter and format text content.
  *
@@ -101,6 +103,7 @@ class TextFilter2
      * @param string $text The text that should be formatted.
      *
      * @return string as the formatted html text.
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public function markdown($text)
     {
