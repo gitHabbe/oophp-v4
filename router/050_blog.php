@@ -53,7 +53,7 @@ $app->router->any(["GET", "POST"], "blog/all", function () use ($app) {
                 $sql = "SELECT * FROM content WHERE slug = ?;";
                 $params = ($contentSlug == null) ? [$contentSlug] : [null];
                 $res = $app->db->executeFetchAll($sql, $params);
-                echo '<pre>' , var_dump($res) , '</pre>';
+                // echo '<pre>' , var_dump($res) , '</pre>';
                 if ($res && $res[0]->slug != null) {
                     $data["slug"] = $res[0]->slug;
                     $app->response->redirect("blog/all?route=error&msg=slug");
@@ -69,8 +69,17 @@ $app->router->any(["GET", "POST"], "blog/all", function () use ($app) {
                 }
                 echo '<pre>' , var_dump($res) , '</pre>';
                 $params = [];
-                array_push($params, $contentTitle, $contentPath, $contentSlug,
-                    $contentData, $contentType, $contentFilter, $contentPublish, $id);
+                array_push(
+                    $params,
+                    $contentTitle,
+                    $contentPath,
+                    $contentSlug,
+                    $contentData,
+                    $contentType,
+                    $contentFilter,
+                    $contentPublish,
+                    $id
+                );
                 $sql = "UPDATE content SET title=?, path=?, slug=?, data=?, type=?, filter=?, published=? WHERE id = ?;";
                 $res = $app->db->executeFetchAll($sql, $params);
             }
@@ -105,6 +114,32 @@ $app->router->any(["GET", "POST"], "blog/all", function () use ($app) {
     return $app->page->render($data);
 });
 
+$app->router->get("blog/posts", function () use ($app) {
+    $app->db->connect();
+    $params = ["post"];
+    $sql = <<<EOD
+SELECT
+    *,
+    DATE_FORMAT(COALESCE(updated, published), '%Y-%m-%dT%TZ') AS published_iso8601,
+    DATE_FORMAT(COALESCE(updated, published), '%Y-%m-%d') AS published,
+    CASE 
+        WHEN (deleted <= NOW()) THEN "isDeleted"
+        WHEN (published <= NOW()) THEN "isPublished"
+        ELSE "notPublished"
+    END AS status
+FROM content
+WHERE 
+    type = ?
+;
+EOD;
+    $res = $app->db->executeFetchAll($sql, $params);
+    $data["content"] = $res;
+    // echo '<pre>' , var_dump($res) , '</pre>';
+    $app->view->add("anax/v2/blog/posts", $data);
+    return $app->page->render($data);
+
+});
+
 $app->router->get("blog/post/{slug}", function ($slug) use ($app) {
     $textFilter = new \Hab\TextFilter2\TextFilter2();
     // echo '<pre>' , var_dump($textFilter) , '</pre>';
@@ -114,11 +149,15 @@ $app->router->get("blog/post/{slug}", function ($slug) use ($app) {
         $params = ["post", $slug];
         $sql = <<<EOD
 SELECT
-    *
+    *,
+    DATE_FORMAT(COALESCE(updated, published), '%Y-%m-%dT%TZ') AS published_iso8601,
+    DATE_FORMAT(COALESCE(updated, published), '%Y-%m-%d') AS published
 FROM content
 WHERE 
     type = ?
     AND slug = ?
+    AND (deleted IS NULL OR deleted > NOW())
+    AND published <= NOW()
 ;
 EOD;
     } else {
@@ -145,7 +184,9 @@ $app->router->get("blog/page/{path}", function ($path) use ($app) {
         $params = ["page", $path];
         $sql = <<<EOD
 SELECT
-    *
+    *,
+    DATE_FORMAT(COALESCE(updated, published), '%Y-%m-%dT%TZ') AS published_iso8601,
+    DATE_FORMAT(COALESCE(updated, published), '%Y-%m-%d') AS published
 FROM content
 WHERE 
     type = ?
@@ -159,7 +200,7 @@ EOD;
     $res = $app->db->executeFetch($sql, $params);
     $filter = (strlen($res->filter) > 0) ? explode(",", $res->filter) : "";
     // $filter = [];
-    echo '<pre>' , var_dump($filter) , '</pre>';
+    // echo '<pre>' , var_dump($filter) , '</pre>';
     $data["data"] = $textFilter->parse($res->data, $filter);
 
     $data["title"] = $res->title;

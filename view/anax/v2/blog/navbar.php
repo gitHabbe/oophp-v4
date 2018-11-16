@@ -2,6 +2,9 @@
     <a href="?route=">Show all</a> |
     <a href="?route=admin">Admin</a> |
     <a href="?route=add">New page/post</a> |
+    <a href="posts">Posts</a> |
+    <a href="page/hem">Home</a> |
+    <a href="page/om">About</a>
     <!-- <a href="?route=get-year">Search year</a> | -->
     <!-- <a href="?route=select-movie">Select</a> -->
     <!-- <a href="?route=movie-edit">Edit</a> | -->
